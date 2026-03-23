@@ -6,6 +6,9 @@ environment:
     - modules/bootcamp/data_foundation
     - modules/bootcamp/ice_cream_api
     - modules/bootcamp/use_cases/oee
+    - modules/bootcamp/garmin_coach
+    # InField: uncomment when cog-siglek/modules/cdf_demo_infield/ exists
+    # - modules/cdf_demo_infield
     # RMDM Sessions (from cognite_dm_skilling)
     # - modules/Session1
     # - modules/Session2
@@ -16,6 +19,8 @@ variables:
       # Variables shared by modules
       icapi_ds_external_id: ds_icapi
       icapi_space_name: icapi_dm_space
+      # Same value as use_cases.oee — must be at bootcamp scope for {{ oee_space_name }} in module YAML (CI build)
+      oee_space_name: oee_ts_space
 
       data_foundation:
         data_developer_source_id: ${DATA_DEVELOPER_SOURCE_ID}
@@ -30,11 +35,17 @@ variables:
         icapi_extractors_client_id: ${ICAPI_EXTRACTORS_CLIENT_ID}
         icapi_extractors_client_secret: ${ICAPI_EXTRACTORS_CLIENT_SECRET}
 
+      garmin_coach:
+        garmin_coach_space_name: garmin_coach_space
+        garmin_coach_ds_external_id: ds_garmin_coach
+        # Same app registration as ICAPI function schedules (runs scheduled Garmin extractor)
+        function_schedule_client_id: ${ICAPI_EXTRACTORS_CLIENT_ID}
+        function_schedule_client_secret: ${ICAPI_EXTRACTORS_CLIENT_SECRET}
+
       use_cases:
         oee:
           data_pipeline_oee_source_id: ${DATA_PIPELINE_OEE_SOURCE_ID}
           uc_oee_ds_external_id: ds_uc_oee
-          oee_space_name: oee_ts_space
           data_pipeline_oee_client_id: ${DATA_PIPELINE_OEE_CLIENT_ID}
           data_pipeline_oee_client_secret: ${DATA_PIPELINE_OEE_CLIENT_SECRET}
 
@@ -48,3 +59,33 @@ variables:
       rmdm_model_space: session2_rmdm
       rmdm_model_views_version: '1.0.0'
       rmdm_instance_space: session2_rmdm_instance
+
+    # InField module configuration
+    # NOTE: The cdf_demo_infield module files must be present in cog-siglek/modules/cdf_demo_infield/
+    # before building. Obtain the module from Cognite support or module repository.
+    cdf_demo_infield:
+      # IdP Group Object IDs for InField access control
+      # Groups created in Azure AD and mapped to CDF groups via sourceId
+      #
+      # Toolkit group (for deployment):
+      #   - bootcamp-0-dev-admin-tk (Object ID: 2dc8cc29-afb6-4de1-8175-389f556cce61)
+      #
+      # Application configuration group:
+      #   - dev-infield-application-configuration (Object ID: 8142c3b1-e3e1-47cd-88fc-cb294970855f)
+      #
+      # Plant1 location groups:
+      #   - dev-infield-plant1-checklist-admins (Object ID: fab4a164-f20d-4a90-838e-d720f7b05235)
+      #   - dev-infield-plant1-normal-users (Object ID: d76c59d2-3f32-4db4-82f2-d2c0d72e448a)
+      #   - dev-infield-plant1-template-admins (Object ID: e38bc6f5-8bf1-49ed-b2b3-24b7beaa3ee4)
+      #   - dev-infield-plant1-viewers (Object ID: 9083fb2c-9c90-439d-9134-868e7557b068)
+      #
+      # Note: The actual variable names depend on the module structure - these may need adjustment
+      # once the module files are available and we can see the expected variable names.
+      infield_readwrite_all_source_id: 2dc8cc29-afb6-4de1-8175-389f556cce61  # bootcamp-0-dev-admin-tk
+      # infield_readonly_all_source_id: <change_me>  # Optional: create if needed for read-only toolkit access
+      infield_application_configuration_source_id: 8142c3b1-e3e1-47cd-88fc-cb294970855f  # dev-infield-application-configuration
+      # Plant1 location groups:
+      infield_plant1_checklist_admins_source_id: fab4a164-f20d-4a90-838e-d720f7b05235  # dev-infield-plant1-checklist-admins
+      infield_plant1_normal_users_source_id: d76c59d2-3f32-4db4-82f2-d2c0d72e448a  # dev-infield-plant1-normal-users
+      infield_plant1_template_admins_source_id: e38bc6f5-8bf1-49ed-b2b3-24b7beaa3ee4  # dev-infield-plant1-template-admins
+      infield_plant1_viewers_source_id: 9083fb2c-9c90-439d-9134-868e7557b068  # dev-infield-plant1-viewers
