@@ -52,11 +52,6 @@ jobs:
       ICAPI_EXTRACTORS_CLIENT_SECRET: ${{ secrets.ICAPI_EXTRACTORS_CLIENT_SECRET }}
       ICAPI_EXTRACTORS_SOURCE_ID: ${{ vars.ICAPI_EXTRACTORS_SOURCE_ID }}
 
-      # Garmin Connect (function secrets — optional repo Secrets for cdf deploy)
-      GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
-      GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
-      GARMIN_TOKENS: ${{ secrets.GARMIN_TOKENS }}
-
     steps:
       - uses: actions/checkout@v4
       - name: Set CDF Project Name and IDP_SCOPES

@@ -32,17 +32,15 @@ That comes from the **Garth** library used by `garminconnect` on a **fresh login
 
    The script uses **`garth.login()` + `dumps()`** (not `Garmin().login()`), because the latter can fail with `OAuth1 token is required for OAuth2 refresh` after a successful SSO when it loads profile — same error you may see in Fusion. If the script still fails, try **`uvx garth login`** and use the printed token line the same way.
 
-2. Copy the printed **`GARMIN_TOKENS=...`** line into **`.env`** (single long line, do not commit).
+2. Run **`cdf build`** and **`cdf deploy`** (Garmin auth is not in [`functions.Function.yaml`](functions/functions.Function.yaml) — CDF rejects null `${GARMIN_*}` at deploy if those env vars are missing).
 
-3. **`cdf build`** and **`cdf deploy`** so the function gets the env var.
+3. In **Fusion** → your function → **Environment variables** / **Secrets**: add **`GARMINTOKENS`** (paste the long token value) and/or secrets **`garmin-tokens`** (same blob; preferred for very long strings), **`garmin-email`**, **`garmin-password`**. Cognite secret **names** must use only `a-z`, `0-9`, and `-`.
 
-4. Re-run the function in Fusion. **When Garmin expires the session**, export again and redeploy.
+4. Re-run the function in Fusion. **When Garmin expires the session**, export again and update Fusion.
 
-**If you see** `utf-8 codec can't decode byte ... invalid start byte`: the session string reached CDF **corrupted** (almost always **line-wrapped** `.env`, **truncated** value, or a bad copy). Fix: put **`GARMIN_TOKENS=` on one line** in `.env` (no line breaks inside the value), re-export, redeploy. Deploy also maps the same value to Cognite secret **`garmin-tokens`** — the function **prefers** that secret over the env var, which avoids some tooling limits on long env values.
+**If you see** `utf-8 codec can't decode byte ... invalid start byte`: the session string is **corrupted** (line-wrapped value, truncation, bad copy). Paste the blob on **one line** in Fusion.
 
-**Optional fallback:** email/password secrets — set **`GARMIN_EMAIL`** and **`GARMIN_PASSWORD`** in `.env` and deploy. This may still fail if Garmin requires MFA or hits the OAuth error above.
-
-Secrets are declared in [`functions.Function.yaml`](functions/functions.Function.yaml). Cognite **secret key names** must use only `a-z`, `0-9`, and `-` (e.g. `garmin-email`, `garmin-password`, `garmin-tokens`). Env var **`GARMINTOKENS`** is the name Garth reads inside `login()`; we set it from **`${GARMIN_TOKENS}`** at deploy.
+**Optional:** you can instead put **`GARMIN_TOKENS`** in **`.env`** for local deploys only if you add secrets/env back into the function YAML with real values — not recommended for shared repos because empty env breaks `cdf deploy`.
 
 ### 2. Schedule authentication (required for the schedule to run)
 

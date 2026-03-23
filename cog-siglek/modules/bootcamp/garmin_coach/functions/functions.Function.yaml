@@ -8,14 +8,6 @@ runtime: py311
 functionPath: ./handler.py
 # Required when CDF project uses DATA_MODELING_ONLY (stores function code as CogniteFile in this space)
 space: {{ garmin_coach_space_name }}
-# Garmin Connect login — injected at deploy from your environment (Fusion UI often has no secrets field).
-# Set GARMIN_EMAIL and GARMIN_PASSWORD in .env locally, or GitHub Actions secrets for CI deploy.
-# Secret *names* must be [a-z0-9-] only — no underscores (Cognite API).
-secrets:
-  garmin-email: ${GARMIN_EMAIL}
-  garmin-password: ${GARMIN_PASSWORD}
-  # Same value as GARMIN_TOKENS — prefer this if env var truncates or mangles the long base64 blob
-  garmin-tokens: ${GARMIN_TOKENS}
-envVars:
-  # Preferred auth in CDF: long session string from scripts/export_garmin_tokens.py (avoids OAuth password bugs)
-  GARMINTOKENS: ${GARMIN_TOKENS}
+# Do not declare secrets/envVars here with ${GARMIN_*} — CDF rejects deploy when those env vars are unset (null).
+# After deploy: in Fusion → function → add secrets garmin-email, garmin-password, garmin-tokens and/or env GARMINTOKENS,
+# or redeploy with a .env that defines them. See module README.

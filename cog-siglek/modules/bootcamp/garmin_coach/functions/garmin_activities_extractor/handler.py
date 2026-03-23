@@ -12,7 +12,7 @@ Creates:
 - Data Model instances: Workout nodes in garmin_coach_space
 - Time Series: high-resolution HR, pace, cadence from TCX when available
 
-Requires secrets: garmin-email, garmin-password (Cognite secret names cannot use underscores)
+Configure in Fusion after deploy: env GARMINTOKENS and/or secrets garmin-email, garmin-password, garmin-tokens (see README).
 
 Data parameters (function call / schedule):
 - days_back: calendar lookback from today (default 7). Use ~1095 for ~3 years initial load.
@@ -286,7 +286,7 @@ def handle(
     data: dict | None = None,
 ) -> dict:
     """
-    Main entry point. Requires secrets['garmin-email'] and secrets['garmin-password'].
+    Main entry point. Needs GARMINTOKENS env and/or token/password secrets (set in Fusion after deploy).
 
     data:
       days_back: int — look back this many days from today (default 7).
