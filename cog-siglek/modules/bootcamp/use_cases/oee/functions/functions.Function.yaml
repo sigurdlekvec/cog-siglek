@@ -6,3 +6,4 @@
       version: "1.0"
   runtime: py311
   functionPath: ./handler.py
+  space: {{ oee_space_name }}
