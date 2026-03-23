@@ -1,0 +1,5 @@
+externalId: ep_garmin_activities
+name: Garmin Activities
+description: Extraction pipeline for Garmin Connect activities ingested via Cognite Function
+source: Garmin Connect API
+dataSetExternalId: {{ garmin_coach_ds_external_id }}

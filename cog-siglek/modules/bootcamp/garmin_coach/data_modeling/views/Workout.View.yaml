@@ -1,0 +1,83 @@
+space: {{ garmin_coach_space_name }}
+externalId: Workout
+name: Garmin Workout View
+description: View for querying workout data - optimized for AI coaching and analytics
+version: "1.0"
+properties:
+  activity_id:
+    container:
+      space: {{ garmin_coach_space_name }}
+      externalId: Workout
+      type: container
+    containerPropertyIdentifier: activity_id
+    name: Activity ID
+  activity_type:
+    container:
+      space: {{ garmin_coach_space_name }}
+      externalId: Workout
+      type: container
+    containerPropertyIdentifier: activity_type
+    name: Activity Type
+  activity_name:
+    container:
+      space: {{ garmin_coach_space_name }}
+      externalId: Workout
+      type: container
+    containerPropertyIdentifier: activity_name
+    name: Activity Name
+  start_time:
+    container:
+      space: {{ garmin_coach_space_name }}
+      externalId: Workout
+      type: container
+    containerPropertyIdentifier: start_time
+    name: Start Time
+  duration_seconds:
+    container:
+      space: {{ garmin_coach_space_name }}
+      externalId: Workout
+      type: container
+    containerPropertyIdentifier: duration_seconds
+    name: Duration Seconds
+  distance_km:
+    container:
+      space: {{ garmin_coach_space_name }}
+      externalId: Workout
+      type: container
+    containerPropertyIdentifier: distance_km
+    name: Distance KM
+  avg_heart_rate:
+    container:
+      space: {{ garmin_coach_space_name }}
+      externalId: Workout
+      type: container
+    containerPropertyIdentifier: avg_heart_rate
+    name: Average Heart Rate
+  max_heart_rate:
+    container:
+      space: {{ garmin_coach_space_name }}
+      externalId: Workout
+      type: container
+    containerPropertyIdentifier: max_heart_rate
+    name: Max Heart Rate
+  avg_pace_min_per_km:
+    container:
+      space: {{ garmin_coach_space_name }}
+      externalId: Workout
+      type: container
+    containerPropertyIdentifier: avg_pace_min_per_km
+    name: Avg Pace Min Per KM
+  calories:
+    container:
+      space: {{ garmin_coach_space_name }}
+      externalId: Workout
+      type: container
+    containerPropertyIdentifier: calories
+    name: Calories
+  elevation_gain_m:
+    container:
+      space: {{ garmin_coach_space_name }}
+      externalId: Workout
+      type: container
+    containerPropertyIdentifier: elevation_gain_m
+    name: Elevation Gain Meters

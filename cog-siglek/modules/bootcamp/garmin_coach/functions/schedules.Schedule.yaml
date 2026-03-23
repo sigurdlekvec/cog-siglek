@@ -1,0 +1,12 @@
+# Daily incremental sync: last 2 days (covers timezone / late uploads), TCX for time series
+- name: Garmin activities daily sync
+  functionExternalId: garmin_activities_extractor
+  cronExpression: "0 2 * * *"
+  data:
+    days_back: 2
+    chunk_days: 2
+    include_tcx: true
+    space_name: "{{ garmin_coach_space_name }}"
+  authentication:
+    clientId: {{ function_schedule_client_id }}
+    clientSecret: {{ function_schedule_client_secret }}

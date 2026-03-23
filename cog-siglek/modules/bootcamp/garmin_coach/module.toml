@@ -1,0 +1,4 @@
+[module]
+title = "Garmin Coach"
+description = "Ingest Garmin activities into CDF and enable AI-powered coaching and analytics"
+is_selected_by_default = false

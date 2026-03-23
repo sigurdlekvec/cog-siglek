@@ -1,0 +1,3 @@
+space: {{ garmin_coach_space_name }}
+name: Garmin Coach Data Model
+description: Space for Garmin workout data - activities, metrics, and time series for AI coaching and analytics

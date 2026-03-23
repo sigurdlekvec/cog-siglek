@@ -49,6 +49,12 @@ joblib = "*"
 # Optional cache handling (useful for APIs)
 cachetools = "*"
 
+# Garmin Coach (garth: explicit dep for token export + OAuth fixes with garminconnect)
+garminconnect = ">=0.2.40"
+garth = ">=0.5.22"
+python-tcxparser = "*"
+cognite-ai = "*"
+
 [tool.poetry.group.dev.dependencies]
 pre-commit = "*"
 ruff = "*"

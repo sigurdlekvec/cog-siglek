@@ -1,0 +1,2 @@
+- externalId: {{ garmin_coach_ds_external_id }}
+  name: Garmin Coach Source Data

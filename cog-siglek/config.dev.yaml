@@ -6,8 +6,7 @@ environment:
     - modules/bootcamp/data_foundation
     - modules/bootcamp/ice_cream_api
     - modules/bootcamp/use_cases/oee
-    # Garmin module: uncomment after `cog-siglek/modules/bootcamp/garmin_coach/` is committed (CI clone has no folder yet)
-    # - modules/bootcamp/garmin_coach
+    - modules/bootcamp/garmin_coach
     # InField: uncomment when cog-siglek/modules/cdf_demo_infield/ exists
     # - modules/cdf_demo_infield
     # RMDM Sessions (from cognite_dm_skilling)

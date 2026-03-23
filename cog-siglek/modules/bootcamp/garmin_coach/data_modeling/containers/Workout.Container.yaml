@@ -1,0 +1,101 @@
+space: {{ garmin_coach_space_name }}
+externalId: Workout
+name: Garmin Workout
+description: A single workout/activity from Garmin Connect
+properties:
+  activity_id:
+    type:
+      list: false
+      collation: ucs_basic
+      type: text
+    immutable: false
+    nullable: false
+    autoIncrement: false
+    name: Activity ID
+    description: Garmin activity ID
+  activity_type:
+    type:
+      list: false
+      collation: ucs_basic
+      type: text
+    immutable: false
+    nullable: true
+    autoIncrement: false
+    name: Activity Type
+    description: e.g. running, cycling, swimming
+  activity_name:
+    type:
+      list: false
+      collation: ucs_basic
+      type: text
+    immutable: false
+    nullable: true
+    autoIncrement: false
+    name: Activity Name
+    description: User-provided name for the activity
+  start_time:
+    type:
+      list: false
+      type: int64
+    immutable: false
+    nullable: false
+    autoIncrement: false
+    name: Start Time
+    description: Activity start timestamp in milliseconds since epoch
+  duration_seconds:
+    type:
+      list: false
+      type: float64
+    immutable: false
+    nullable: true
+    autoIncrement: false
+    name: Duration Seconds
+  distance_km:
+    type:
+      list: false
+      type: float64
+    immutable: false
+    nullable: true
+    autoIncrement: false
+    name: Distance KM
+  avg_heart_rate:
+    type:
+      list: false
+      type: float64
+    immutable: false
+    nullable: true
+    autoIncrement: false
+    name: Average Heart Rate
+  max_heart_rate:
+    type:
+      list: false
+      type: float64
+    immutable: false
+    nullable: true
+    autoIncrement: false
+    name: Max Heart Rate
+  avg_pace_min_per_km:
+    type:
+      list: false
+      type: float64
+    immutable: false
+    nullable: true
+    autoIncrement: false
+    name: Avg Pace Min Per KM
+    description: Average pace in minutes per kilometer
+  calories:
+    type:
+      list: false
+      type: float64
+    immutable: false
+    nullable: true
+    autoIncrement: false
+    name: Calories
+  elevation_gain_m:
+    type:
+      list: false
+      type: float64
+    immutable: false
+    nullable: true
+    autoIncrement: false
+    name: Elevation Gain Meters

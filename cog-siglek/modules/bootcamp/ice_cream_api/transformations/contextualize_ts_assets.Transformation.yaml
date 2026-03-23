@@ -1,5 +1,6 @@
 externalId: contextualize_ts_assets
 name: Contextualize TimeSeries and Assets
+dataSetExternalId: {{ icapi_ds_external_id }}
 destination:
   dataModel:
     space: cdf_cdm

@@ -1,0 +1,4 @@
+cognite-sdk
+garminconnect>=0.2.40
+garth>=0.5.22
+python-tcxparser

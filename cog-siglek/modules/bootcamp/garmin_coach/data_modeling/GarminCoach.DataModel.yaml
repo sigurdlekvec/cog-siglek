@@ -1,0 +1,10 @@
+space: {{ garmin_coach_space_name }}
+externalId: GarminCoach
+name: Garmin Coach Data Model
+description: Data model for Garmin workout data - supports AI coaching and analytics
+version: "1.0"
+views:
+  - space: {{ garmin_coach_space_name }}
+    externalId: Workout
+    version: "1.0"
+    type: view
